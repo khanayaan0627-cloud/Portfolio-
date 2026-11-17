@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayaan Khan | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0d1117;
+            color: #ffffff;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Navbar */
+        header {
+            background: #161b22;
+            padding: 12px 4%;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .nav-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #00ff66;
+            letter-spacing: 0.5px;
+        }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        nav button {
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        nav button:hover, nav button.active {
+            color: #0d1117;
+            background: #00ff66;
+            border-color: #00ff66;
+            font-weight: bold;
+        }
+
+        /* Pages System (Hidden by default, active is shown) */
+        .page {
+            display: none;
+            padding: 25px 4%;
+            flex: 1;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 1. Home Page Design */
+        .home-card {
+            background: linear-gradient(rgba(13,17,23,0.7), rgba(13,17,23,0.85)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 50px 20px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .home-card h1 {
+            font-size: 2.2rem;
+            color: #ffbb00;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .home-card p {
+            font-size: 1rem;
+            color: #c9d1d9;
+            margin-bottom: 25px;
+        }
+        .main-btn {
+            background: #00ff66;
+            color: #0d1117;
+            padding: 10px 24px;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* 2. About Me Page */
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 18px;
+            border-radius: 10px;
+        }
+        .profile-flex {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+        .profile-flex img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #00ff66;
+            object-fit: cover;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 12px;
+        }
+        @media(max-width: 600px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+        .about-grid h3 { color: #00ff66; font-size: 1rem; margin-bottom: 6px; }
+        .about-grid p, .about-grid li { font-size: 0.85rem; color: #c9d1d9; margin-bottom: 5px; }
+        .about-grid ul { padding-left: 16px; }
+
+        /* 3. Portfolio Page */
+        .section-title {
+            color: #00ff66;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #21262d;
+        }
+        .box h4 { font-size: 0.9rem; color: #ffffff; margin-bottom: 6px; }
+
+        /* 4. Services Page */
+        .service-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .service-box h4 { color: #00ff66; font-size: 0.95rem; margin-bottom: 5px; }
+        .service-box p { font-size: 0.82rem; color: #8b949e; }
+
+        /* 5. Contact & Order Page */
+        .order-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .order-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .order-btn {
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: block;
+        }
+        .wa-btn { background: #25d366; color: #0d1117; }
+        .mail-btn { background: #ea4335; color: #ffffff; }
+        .fiverr-btn { background: #1dbf73; color: #ffffff; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #090d12;
+            color: #8b949e;
+            font-size: 0.8rem;
+            border-top: 1px solid #30363d;
+            margin-top: auto;
+        }
+        footer a { color: #00ff66; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Header -->
+    <header>
+        <div class="nav-top-row">
+            <div class="logo">AYAAN KHAN</div>
+        </div>
+        <nav>
+            <button class="nav-btn active" onclick="switchPage('home', this)">Home</button>
+            <button class="nav-btn" onclick="switchPage('about', this)">About me</button>
+            <button class="nav-btn" onclick="switchPage('portfolio', this)">Portfolio</button>
+            <button class="nav-btn" onclick="switchPage('services', this)">Services</button>
+            <button class="nav-btn" onclick="switchPage('order', this)">Contact & Order</button>
+        </nav>
+    </header>
+
+    <!-- 1. HOME PAGE -->
+    
